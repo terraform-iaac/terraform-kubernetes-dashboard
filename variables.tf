@@ -1,7 +1,7 @@
 locals {
   dashboard_chart = "kubernetes-dashboard"
   dashboard_admin_service_account = "kubernetes-dashboard-admin"
-  dashboard_repository = "https://funkypenguin.github.io/helm-kubernetes-dashboard/"
+  dashboard_repository = "https://kubernetes.github.io/dashboard/"
   dashboard_version = "2.0.0"
 }
 
