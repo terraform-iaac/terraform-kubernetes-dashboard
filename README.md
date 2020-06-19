@@ -1,4 +1,5 @@
 # Modules for create kubernetes dashboard
+
 ## For enable monitoring in dashboard you must have metrics from kube:
  ```shell script
 resource "helm_release" "metrics_server" {
@@ -12,4 +13,4 @@ resource "helm_release" "metrics_server" {
  ```
 
 
-Source: https://github.com/funkypenguin/helm-kubernetes-dashboard.git
+Source: https://kubernetes.github.io/dashboard/
