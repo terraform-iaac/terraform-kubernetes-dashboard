@@ -44,3 +44,8 @@ variable "additional_set" {
   description = "Add additional set for helm kubernetes-dashboard"
   default = []
 }
+variable "enable_skip_button" {
+  description = "Skip login page for readyonly access"
+  type = bool
+  default = true
+}

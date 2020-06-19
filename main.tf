@@ -41,16 +41,20 @@ resource "helm_release" "dashboard" {
     type = "string"
   }
   set {
-    name = "extraArgs[0]"
-    value = "--enable-skip-login"
-  }
-  set {
     name = "metricsScraper.enabled"
     value = "true"
   }
   set {
     name = "rbac.clusterReadOnlyRole"
     value = var.readonly_user
+  }
+
+  dynamic "set" {
+    for_each = var.enable_skip_button ? [{}] : []
+    content {
+        name = "extraArgs[0]"
+        value = "--enable-skip-login"
+    }
   }
 
   dynamic "set" {
