@@ -46,6 +46,10 @@ resource "helm_release" "dashboard" {
     value = "true"
   }
   set {
+    name  = "metrics-server.enabled"
+    value = "true"
+  }
+  set {
     name  = "rbac.clusterReadOnlyRole"
     value = var.readonly_user
   }
