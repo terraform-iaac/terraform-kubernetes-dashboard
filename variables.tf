@@ -1,25 +1,25 @@
 locals {
-  dashboard_chart = "kubernetes-dashboard"
+  dashboard_chart                 = "kubernetes-dashboard"
   dashboard_admin_service_account = "kubernetes-dashboard-admin"
-  dashboard_repository = "https://kubernetes.github.io/dashboard/"
+  dashboard_repository            = "https://kubernetes.github.io/dashboard/"
 }
 
 variable "create_namespace" {
   description = "Create namespace by module ? true or false"
-  type = bool
-  default = true
+  type        = bool
+  default     = true
 }
 variable "namespace" {
   description = "Namespace name"
-  type = string
-  default = "kubernetes-dashboard"
+  type        = string
+  default     = "kubernetes-dashboard"
 }
 variable "tls" {
   description = "TLS Secret name for URL"
-  type = string
+  type        = string
 }
 variable "dashboard_subdomain" {
-  type = string
+  type    = string
   default = "kubernetes-dashboard."
 }
 variable "domain" {
@@ -51,5 +51,5 @@ variable "enable_skip_button" {
 variable "chart_version" {
   description = "Helm Chart version (Not Recomended)"
   type        = string
-  default     = "2.8.3"
+  default     = "4.3.1"
 }

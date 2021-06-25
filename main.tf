@@ -4,9 +4,9 @@ resource "kubernetes_namespace" "namespace" {
 
   metadata {
     annotations = {
-      name      = var.namespace
+      name = var.namespace
     }
-    name        = var.namespace
+    name = var.namespace
   }
 }
 
@@ -55,19 +55,19 @@ resource "helm_release" "dashboard" {
   }
 
   dynamic "set" {
-    for_each  = var.enable_skip_button ? [{}] : []
+    for_each = var.enable_skip_button ? [{}] : []
     content {
-        name  = "extraArgs[0]"
-        value = "--enable-skip-login"
+      name  = "extraArgs[0]"
+      value = "--enable-skip-login"
     }
   }
 
   dynamic "set" {
     for_each = var.additional_set
     content {
-      name   = set.value.name
-      value  = set.value.value
-      type   = lookup(set.value, "type", null )
+      name  = set.value.name
+      value = set.value.value
+      type  = lookup(set.value, "type", null)
     }
   }
 }
