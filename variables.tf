@@ -44,12 +44,12 @@ variable "additional_set" {
   default     = []
 }
 variable "enable_skip_button" {
-  description = "Skip login page for readyonly access"
+  description = "Skip login page for ready only access"
   type        = bool
   default     = true
 }
 variable "chart_version" {
   description = "Helm Chart version (Not Recomended)"
   type        = string
-  default     = "4.3.1"
+  default     = "4.6.0"
 }
