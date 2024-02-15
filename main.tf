@@ -73,7 +73,7 @@ resource "helm_release" "dashboard" {
 }
 
 # Admin Token
-resource "kubernetes_service_account" "admin_service_account" {
+resource "kubernetes_service_account_v1" "admin_service_account" {
   count = var.create_admin_token ? 1 : 0
 
   metadata {
@@ -95,15 +95,21 @@ resource "kubernetes_cluster_role_binding" "admin_role_binding" {
   }
   subject {
     kind      = "ServiceAccount"
-    name      = kubernetes_service_account.admin_service_account[0].metadata[0].name
+    name      = kubernetes_service_account_v1.admin_service_account[0].metadata[0].name
     namespace = var.create_namespace ? kubernetes_namespace.namespace[0].id : var.namespace
   }
 }
-data "kubernetes_secret" "admin_token" {
+resource "kubernetes_secret_v1" "admin_token" {
   count = var.create_admin_token ? 1 : 0
 
   metadata {
-    name      = kubernetes_service_account.admin_service_account[0].default_secret_name
-    namespace = kubernetes_namespace.namespace[0].id
+    annotations = {
+      "kubernetes.io/service-account.name" = kubernetes_service_account_v1.admin_service_account[0].metadata[0].name
+      "kubernetes.io/service-account.namespace" = var.create_namespace ? kubernetes_namespace.namespace[0].id : var.namespace
+    }
+    name = "${kubernetes_service_account_v1.admin_service_account[0].metadata[0].name}-token"
+    namespace = var.create_namespace ? kubernetes_namespace.namespace[0].id : var.namespace
   }
+
+  type = "kubernetes.io/service-account-token"
 }

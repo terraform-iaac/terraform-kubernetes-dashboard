@@ -11,7 +11,8 @@ Also, optional (default ***true***), you can create admin user with access token
 
 Name | Description
 --- | --- |
-Terraform | >= v0.14.9
+Terraform | >= v1.3.0
+Kubernetes | >= v1.24.0
 
 ## Usage
 
